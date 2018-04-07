@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel = 'stylesheet' type = 'text/css' href="css/blackStyle.css">
+
+    <title>Black Jack</title>
+
+</head>
+
+
+<body>
+
+    <div id="table" class = 'container-fluid background'>
+
+        <h1 id="messages" class = 'status'><b>Select Bet Amount and Click Deal to Start Game</b></h1>
+
+        <div id = 'dealer-section'>
+
+            <label class = 'points'>Dealer:</label>
+
+            <label id="dealer-points" class = 'points'></label>
+            <label id = 'dealer-cash' class = 'cash'>Cash: $500</label>
+
+            <div id="dealer-hand" class="container-fluid handBack">
+
+                <div id = 'cards' class = 'row'>
+
+                    <img id = 'd1' class = 'resize' src="images/Red_back.jpg">
+                    <img id = 'd2' class = 'resize' src="images/Red_back.jpg">
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id = 'player-section' style = 'margin-top:2%;'>
+
+
+            <label class = 'points'>Player:</label>
+
+            <label id="player-points" class="points"></label>
+            <label id = 'player-cash' class = 'cash'></label>
+
+
+            <div id="player-hand" class = 'container-fluid handBack'>
+
+                <div id = 'pCards' class = 'row'>
+
+                    <img id = 'p1' class = 'resize' src="images/Red_back.jpg">
+                    <img id = 'p2' class = 'resize' src="images/Red_back.jpg">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id = 'betInput' class="row">
+
+            <button id = 'minus' class="btn btn-primary">-</button>
+            <input id = 'bet' type="number" value="5">
+            <button id ='plus' class="btn btn-primary">+</button>
+
+        </div>
+
+        <div id="pot" class="row pots"></div>
+
+
+
+
+
+
+        <div class="buttons text-center" style = 'margin-top: 0.4em;'>
+
+             <button id="deal-button" type ='button' class = 'btn btn-light'>Deal</button>
+
+             <button id="hit-button" type ='button' class = 'btn btn-light'>Hit</button>
+
+             <button id="stand-button" type ='button' class = 'btn btn-light'>Stand</button>
+
+         </div>
+
+    </div>
+
+
+
+
+
+
+
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+
+    <script src="blackjack.js"></script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+
+
+
+
+
+</html>

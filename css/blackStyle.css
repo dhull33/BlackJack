@@ -1,0 +1,84 @@
+
+div.background {
+    background: darkgreen;
+    border: 3px solid gray;
+    border-radius: 20px;
+    margin: 1%;
+    width: 98%;
+    padding: 10%;
+}
+
+.handBack {
+    background: antiquewhite;
+    margin: auto;
+    border-radius: 7px;
+    padding: 3.2%;
+    height: 12.5em;
+
+
+}
+
+img.resize {
+    height: 9.375rem;
+    border-radius: 11px;
+    margin: 0%;
+}
+
+.points {
+    font-size: x-large;
+    color: black;
+    font-weight: bold;
+}
+
+.dealerStatus {
+    font-size: x-large;
+    color: beige;
+    margin-left: 25%;
+}
+
+.status {
+    font-size: 2.5em;
+    text-align: center;
+    height: auto;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 1rem;
+
+
+}
+
+.cash {
+    position: relative;
+    margin-left: 55%;
+    color: white;
+    font-size: x-large;
+
+}
+
+
+.pots {
+    display: flex;
+    justify-content: center;
+    color: darkgoldenrod;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Georgia";
+
+}
+
+
+#betInput {
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+
+input{
+    text-align: center;
+}
+
+
+
+
+.btn-primary:hover, .btn-primary:focus { background-color: #0486b9; }
