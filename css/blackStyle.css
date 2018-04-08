@@ -6,26 +6,27 @@ div.background {
     margin: 1%;
     width: 98%;
     padding: 10%;
+    height: 100vh;
 }
 
 .handBack {
     background: antiquewhite;
     margin: auto;
     border-radius: 7px;
-    padding: 3.2%;
-    height: 12.5em;
+    padding: 1rem;
+    max-height: 25vw;
 
 
 }
 
 img.resize {
-    height: 9.375rem;
+    max-height: 14vw;
     border-radius: 11px;
-    margin: 0%;
+    margin-left: 0.3rem;
 }
 
 .points {
-    font-size: x-large;
+    font-size: 2.5vw;
     color: black;
     font-weight: bold;
 }
@@ -37,13 +38,12 @@ img.resize {
 }
 
 .status {
-    font-size: 2.5em;
+    font-size: 5vw;
     text-align: center;
     height: auto;
     font-weight: bold;
     color: black;
     margin-bottom: 1rem;
-
 
 }
 
@@ -51,7 +51,7 @@ img.resize {
     position: relative;
     margin-left: 55%;
     color: white;
-    font-size: x-large;
+    font-size: 2.5vw;
 
 }
 
