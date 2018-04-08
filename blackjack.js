@@ -1,5 +1,4 @@
 
-
 // Card constructor
 function Card(image){
     this.image = image;
@@ -31,7 +30,6 @@ function Card(image){
         this.faceValue = Number(this.image[7]);
     }
 };
-
 
 
 
@@ -78,14 +76,7 @@ function shuffleAndDraw() {
 };
 
 
-
 //var deck = new shuffleAndDraw();
-
-
-
-
-
-
 
 function uniqueCard(){
     var deck = new shuffleAndDraw();
@@ -106,15 +97,8 @@ function uniqueCard(){
 };
 
 
-
-
-//Hide Hit and Stand Buttons
-$('#hit-button').hide();
-$('#stand-button').hide();
-
-
-
-//Bet buttons
+/*
+Bet buttons ==> Could be useful in the future
 $('.btn-primary').on('click', function(){
     var $button = $(this);
 
@@ -137,219 +121,147 @@ $('.btn-primary').on('click', function(){
     $button.parent().find('input').val(newValue);
 })
 
+*/
 
-// Bet Stuff
-var bet = $('#bet').val();
-var pot = bet * 2;
-var dealerPoints = 0;
-var playerPoints = 0;
+$('#hit-button').hide();
+$('#stand-button').hide();
+
 // Deal Button
-var playerCash;
-var dealerCash ;
-var cash = 500;
-$('#player-cash').text("Cash: $" + cash);
-$('#dealer-cash').text("Cash: $" + cash);
+$('#deal-button').on('click', function () {
 
-function deal() {
-    $('#deal-button').on('click', function () {
-        $('.btn-primary').hide();
-        $('#bet').hide();
+    //Dealer's first card
+    var dealCar = uniqueCard();
+    $('#d1').attr('src', dealCar['image']);
+    dealerPoints = dealCar['pointValue'];
+    $('#dealer-points').text(dealerPoints);
 
-        //Dealer's first card
-        var dealCar = uniqueCard();
-        $('#d1').attr('src', dealCar['image']);
-        dealerPoints = dealCar['pointValue'];
-        $('#dealer-points').text(dealerPoints);
+    //Player's first two cards
+    var play1 = uniqueCard();
+    var play2 = uniqueCard();
+    $('#p1').attr('src', play1['image']);
+    $('#p2').attr('src', play2['image']);
+    playerPoints = play1['pointValue'] + play2['pointValue'];
+    if (play1['suit'] == 'A' && play2['suit'] == 'A') {
+        playerPoints = 12;
+        $('#player-points').text(playerPoints);
+    }
+    else {
+        $('#player-points').text(playerPoints);
+    }
 
-        //Player's first two cards
-        var play1 = uniqueCard();
-        var play2 = uniqueCard();
-        $('#p1').attr('src', play1['image']);
-        $('#p2').attr('src', play2['image']);
-        playerPoints = play1['pointValue'] + play2['pointValue'];
-        if (play1['suit'] == 'A' && play2['suit'] == 'A') {
-            playerPoints = 12;
-            $('#player-points').text(playerPoints);
-        }
-        else {
-            $('#player-points').text(playerPoints);
-        }
-
-        if (playerPoints == 21) {
-            $('#messages').text('You Win!');
-            setTimeout(reLoad, 3000);
-        }
-        else {
-            $('#messages').text("Press Hit or Stand");
-            $('#deal-button').hide();
-            $('#hit-button').show();
-            $('#stand-button').show();
-
-        }
+    if (playerPoints == 21) {
+        $('#messages').text('You Win!');
+        setTimeout(location.reload(), 3000);
+    }
+    else {
+        $('#messages').text("Press Hit or Stand");
+        $('#deal-button').hide();
+        $('#hit-button').show();
+        $('#stand-button').show();
+    }
 
 
-        //Adjust Cash Amount
+});
 
-        playerCash = cash - bet;
-        dealerCash = cash - bet;
-
-        $('#player-cash').text('Cash: $' + playerCash);
-        $('#dealer-cash').text('Cash: $' + dealerCash);
-
-        $('#pot').text('Pot: $' + pot);
-        $('#betInput').hide();
-
-
-    });
-};
 
 
 
 
 
 /* The hit function generates a new player card and adds its pointValue to player's points. */
-function hit() {
-    $('#hit-button').click(function () {
-        var numPCards = 0;
-        //Player's third card
-        var play3 = uniqueCard();
-        var pCard3 = document.createElement('img');
-        pCard3.setAttribute('src', play3['image']);
-        pCard3.setAttribute('class', 'resize');
 
-        numPCards++;
-
-        //Get parent node with id = 'pCards'
-        $('#pCards').append(pCard3);
+$('#hit-button').click(function () {
+    //Player's third card
+    var play3 = uniqueCard();
+    var pCard3 = document.createElement('img');
+    pCard3.setAttribute('src', play3['image']);
+    pCard3.setAttribute('class', 'resize');
 
 
-        if (play3['suit'] == 'A' && playerPoints > 10) {
-            playerPoints += 1;
-            $('#player-points').text(playerPoints);
-        } else {
-            playerPoints += play3['pointValue'];
-            $('#player-points').text(playerPoints);
-        }
-
-        if (playerPoints > 21) {
-            $('#messages').text('Bust!');
-            $('#d2').attr('src', deal2['image']);
-            dealerPoints += deal2['pointValue']
-            $('#dealer-points').text(dealerPoints);
-            setTimeout(reLoad, 3000);
-        }
-        else if (playerPoints == 21) {
-            $('#messages').text('Player Wins!');
-            $('#d2').attr('src', deal2['image']);
-
-            dealerPoints += deal2['pointValue']
-            $('#dealer-points').text(dealerPoints);
-            setTimeout(reLoad, 3000);
-
-        }
-        return numPCards;
-
-    });
-};
+    //Get parent node with id = 'pCards'
+    $('#pCards').append(pCard3);
 
 
-
-function stand(){
-        $('#stand-button').click(function(){
-        $('#hit-button').hide();
-        var deal2 = uniqueCard();
-
-        $('#d2').attr('src', deal2['image']);
-        dealerPoints += deal2['pointValue']
-        $('#dealer-points').text(dealerPoints);
-
-        var noDCards = 0;
-        while (dealerPoints < 17) {
-            var deal3 = uniqueCard();
-            var dealImage = document.createElement('img');
-            dealImage.setAttribute('src', deal3['image']);
-            dealImage.setAttribute('class', 'resize');
-
-            $('#cards').append(dealImage);
-
-            dealerPoints += deal3['pointValue'];
-            $('#dealer-points').text(dealerPoints);
-            noDCards ++
-        }
-
-        $('#messages').show();
-
-        if (dealerPoints == 21 && playerPoints < 21){
-            $('#messages').text('Dealer Wins');
-
-        }
-
-        else if (dealerPoints > playerPoints && dealerPoints <= 21){
-            $('#messages').text("Dealer Wins");
-
-        }
-        else if (playerPoints > dealerPoints && playerPoints <= 21){
-            $('#messages').text('Player Wins!');
-
-        }
-        else if (dealerPoints > 21 && playerPoints < 21){
-            $("#messages").text("Dealer Bust");
-        }
-        else{
-            $("#messages").text("Push!");
-        }
-
-    })
-        setTimeout(reLoad, 3000);
-
-
-    };
-
-
-function reLoad (){
-    $('#deal-button').show();
-    $('.btn-primary').show();
-    $('#hit-button').hide();
-    $('#stand-button').hide();
-
-    $('#pot').hide();
-    $('#messages').text("Select Bet Amount and Click Deal to Start Game")
-
-    //Reset Cards
-    var playerCards = document.getElementById('pCards').getElementsByTagName('img');
-    for (var i=0; i < playerCards.length;i++ ){
-        playerCards[i].setAttribute('src','' );
-    };
-
-    var dealerCards = document.getElementById('cards').getElementsByTagName('img');
-    for (var j=0; j < dealerCards.length;j++ ){
-        dealerCards[j].setAttribute('src','' );
+    if (play3['suit'] == 'A' && playerPoints > 10) {
+        playerPoints += 1;
+        $('#player-points').text(playerPoints);
+    } else {
+        playerPoints += play3['pointValue'];
+        $('#player-points').text(playerPoints);
     }
 
+    if (playerPoints > 21) {
+        $('#messages').text('Bust!');
+        setTimeout(reLoad, 2500);
+    }
+    else if (playerPoints == 21) {
+        $('#messages').text('Player Wins!');
 
-    $('#p1').attr('src', 'images/Red_back.jpg');
-    $('#p2').attr('src', 'images/Red_back.jpg');
-    $('#d1').attr('src', 'images/Red_back.jpg');
-    $('#d2').attr('src', 'images/Red_back.jpg');
+        setTimeout(reLoad, 2500);
 
-    //Add Cash and Reset Points
-    playerCash = playerCash;
-    dealerCash = dealerCash;
-
-    playerPoints = 0;
-    dealerPoints = 0;
-    $('#player-points').text(0);
-    $('#dealer-points').text(0);
+    }
+});
 
 
 
 
 
-}
+$('#stand-button').click(function(){
+    $('#hit-button').hide();
+    var deal2 = uniqueCard();
+
+    $('#d2').attr('src', deal2['image']);
+    dealerPoints += deal2['pointValue']
+    $('#dealer-points').text(dealerPoints);
+
+    var noDCards = 0;
+    while (dealerPoints < 17) {
+        var deal3 = uniqueCard();
+        var dealImage = document.createElement('img');
+        dealImage.setAttribute('src', deal3['image']);
+        dealImage.setAttribute('class', 'resize');
+
+        $('#cards').append(dealImage);
+
+        dealerPoints += deal3['pointValue'];
+        $('#dealer-points').text(dealerPoints);
+        noDCards ++
+    }
+
+    $('#messages').show();
+
+    if (dealerPoints == 21 && playerPoints < 21){
+        $('#messages').text('Dealer Wins');
+        setTimeout(reLoad, 2500);
+
+    }
+
+    else if (dealerPoints > playerPoints && dealerPoints <= 21){
+        $('#messages').text("Dealer Wins");
+        setTimeout(reLoad, 2500);
+
+    }
+    else if (playerPoints > dealerPoints && playerPoints <= 21){
+        $('#messages').text('Player Wins!');
+        setTimeout(reLoad, 2500);
+
+    }
+    else if (dealerPoints > 21 && playerPoints < 21){
+        $("#messages").text("Dealer Bust");
+        setTimeout(reLoad, 2500);
+    }
+    else{
+        $("#messages").text("Push!");
+        setTimeout(reLoad, 2500);
+    }
+
+    });
 
 
 
-
+function reLoad(){
+    location.reload();
+};
 
 
 
