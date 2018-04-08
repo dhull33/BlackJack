@@ -20,8 +20,8 @@ div.background {
 }
 
 img.resize {
-    max-height: 20vh;
-    max-width: 18vw;
+    max-height: 16vh;
+    max-width: 17vw;
     border-radius: 11px;
     margin-left: 0.3rem;
 }
